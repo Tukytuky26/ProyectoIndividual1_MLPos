@@ -3,9 +3,9 @@
 ![image](_src/images/cine.png)
 
 # **Introducción**
+n este proyecto se desea llevar a cabo un modelo de recomendación, donde se emplearán desde el tratamiento y la recolección de datos, hasta el entrenamiento y mantenimiento de Machine Learning, de manera que pueda haber nuevos datos.
 
 # **Planteamiento del problema**
-En este proyecto se desea llevar a cabo un modelo de recomendación, donde se emplearán desde el tratamiento y la recolección de datos, hasta el entrenamiento y mantenimiento de Machine Learning, de manera que pueda haber nuevos datos.
 El rol asignado es realizar un trabajo  como data scientist en una star-up que provee servicios de agregación de plataformas de streaming. En el cual, se debe crear un modelo de Machine learning que servirá como alternativa de recomendación de películas.
 En la recolección de nuestros datos se tienen algunas deficiencias, debido a que la madurez de los mismos es poca, existen: datos anidados, in transformar, no hay procesos automatizados para la actualización de nuevas películas o series.
 
