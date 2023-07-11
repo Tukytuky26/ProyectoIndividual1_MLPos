@@ -3,6 +3,7 @@ import pandas as pd
 import pickle
 import joblib
 
+
 app = FastAPI()
 
 #http://127.0.0.1:8000
@@ -102,12 +103,13 @@ def get_director(Director:str):
 
 
 @app.get('/recomendacion/{titulo}')
-def recommend(titulo):
-    muestra = pd.read_csv('_src/data/model_data.csv')
-    data = joblib.load('_src/data/similarity.pkl')
+def recommend(titulo:str):
+    muestra = pd.read_csv('_src/data/data_model.csv')
+    data = joblib.load('_src/data/similarity.pkl') 
     index = muestra[muestra['title'] == titulo].index[0]
     distances = data[index] 
-    similar = sorted(list(enumerate(distances)), reverse=True, key=lambda x: x[1])
+    similar = sorted(list(enumerate(distances)),reverse=True,key=lambda x:x[1])
     similar_indice = [i for i, _ in similar[1:6]]
     similar_pelis = muestra['title'].iloc[similar_indice].values.tolist()
-    return {'peliculas_recomendadas': similar_pelis}
+    return {'titulo': str(titulo), 'recomendaciones':similar_pelis}
+    
