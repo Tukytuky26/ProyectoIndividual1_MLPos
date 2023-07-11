@@ -15,7 +15,6 @@ En la recolección de nuestros datos se tienen algunas deficiencias, debido a qu
 * Desarrollar un modelo de recomendación de películas por medio de Machine learning
 
 # **Herramientas utilizadas**
-* Herramientas
 * Python
 * Pandas
 * Scikit Learn
