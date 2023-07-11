@@ -1,3 +1,4 @@
+#Se importan los módulos necesarios: FastAPI para crear la API, pandas para el manejo de datos en formato CSV, pickle y joblib para cargar archivos de modelo. Se crea una instancia de la aplicación FastAPI utilizando la variable app.
 from fastapi import FastAPI
 import pandas as pd
 import pickle
@@ -8,6 +9,7 @@ app = FastAPI()
 
 #http://127.0.0.1:8000
 
+#Se define un endpoint para la ruta raíz ("/"). Cuando se accede a esta ruta mediante una solicitud GET, se devuelve un diccionario con información de introducción sobre el proyecto.
 @app.get('/')
 def index():
      introduccion = {'introduction': 'Operaciones de Aprendizaje Automático (MLOps)',
@@ -18,6 +20,7 @@ def index():
      return introduccion
 
 
+#Se define un endpoint para la ruta "/peliculas_idioma/{idioma}". Cuando se accede a esta ruta con un idioma específico, se carga un archivo CSV de películas, se convierte el idioma a minúsculas y se cuenta cuántas películas están en ese idioma. Se devuelve un diccionario con el idioma y la cantidad de películas.
 @app.get('/peliculas_idioma/{idioma}')
 def peliculas_idioma(idioma:str):
     data = pd.read_csv('_src/data/movies_etl_fa.csv')
@@ -27,10 +30,11 @@ def peliculas_idioma(idioma:str):
     peliculas_idioma = {'idioma': idioma,'cantidad': cantidad_peliculas}
     return peliculas_idioma
 
+#Se define un endpoint para la ruta "/peliculas_duracion/{Pelicula}". Cuando se accede a esta ruta con el nombre de una película, se carga el archivo CSV de películas y se busca la información de duración y año de lanzamiento para la película especificada. Se devuelve una lista de diccionarios con la información de cada película encontrada.
 @app.get('/peliculas_duracion/{Pelicula}')
 def pelicula_duracion(Pelicula:str):
     data = pd.read_csv('_src/data/movies_etl_fa.csv')
-    pelicula = data[data['title'].str.lower() == Pelicula.lower()]
+    pelicula = data[data['title'].str.lower() == Pelicula.lower()] # Filtrar las películas por nombre de pelicula
     informacion_peliculas = []
     for i, row in pelicula.iterrows():
         pelicula_info = {
@@ -41,6 +45,7 @@ def pelicula_duracion(Pelicula:str):
         informacion_peliculas.append(pelicula_info)
     return informacion_peliculas
 
+#Se define un endpoint para la ruta "/peliculas_franquicia/{Franquicia}". Cuando se accede a esta ruta con el nombre de una franquicia, se carga el archivo CSV de películas y se filtran las películas que pertenecen a esa franquicia. Se calcula la cantidad de películas, la ganancia total y el promedio de ganancia de la franquicia. Se devuelve un diccionario con esta información.
 @app.get('/peliculas_franquicia/{Franquicia}')
 def peliculas_franquicia(Franquicia:str):
     data = pd.read_csv('_src/data/movies_etl_fa.csv')
@@ -59,6 +64,7 @@ def peliculas_franquicia(Franquicia:str):
 
     return informacion_franquicia
 
+#Se define un endpoint para la ruta "/peliculas_pais/{Pais}". Cuando se accede a esta ruta con el nombre de un país, se carga el archivo CSV de películas y se cuenta cuántas películas fueron producidas en ese país. Se devuelve un diccionario con el nombre del país y la cantidad de películas.
 @app.get('/peliculas_pais/{Pais}')
 def peliculas_pais(Pais: str):
     data = pd.read_csv('_src/data/movies_etl_fa.csv')  # Reemplaza con la ruta y nombre de tu archivo CSV
@@ -68,6 +74,7 @@ def peliculas_pais(Pais: str):
     peliculasxpais = {'pais': Pais, 'cantidad': int(cantidad_peliculas)}
     return peliculasxpais
 
+#Se define un endpoint para la ruta "/productoras_exitosas/{Productora}". Cuando se accede a esta ruta con el nombre de una productora, se carga el archivo CSV de películas y se filtran las películas producidas por esa productora. Se calcula la ganancia total y la cantidad de películas de esa productora. Se devuelve un diccionario con esta información.
 @app.get('/productoras_exitosas/{Productora}')
 def productoras_exitosas(Productora:str):
     data = pd.read_csv('_src/data/movies_etl_fa.csv')

@@ -68,4 +68,5 @@ _`Nota: para más detalles, revisar el documento main.py`_
 
 # **Links**
 
-* Deploy:
+* GitHub(repositorio):https://github.com/Tukytuky26/ProyectoIndividual1_MLPos#eda
+* Deploy: https://peliculas-recomendaciones.onrender.com
