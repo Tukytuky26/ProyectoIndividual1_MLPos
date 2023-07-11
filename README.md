@@ -17,13 +17,17 @@ En la recolección de nuestros datos se tienen algunas deficiencias, debido a qu
 # **Herramientas utilizadas**
 * Herramientas
 * Python
+* Pandas
+* Scikit Learn
+* Matplotlib
+* Sns
 * Fast api
 * Uvicorn
 * Render
 
 
-# **Metodología **
-# Etl: 
+# **Metodología**
+# [ETL] (ETL-EDA-ML_Ops.ipynb)
 Se transformaron algunos datos  los cuales fueron:  
 1. Se desanidaron los datos de las columnas que tenían como datos un diccionario o una lista, extrayendo solo la información que iba a utilizarse.
 2. Se rellenaron los valores nulos de los campos de las columnas revenue y budget.
@@ -32,7 +36,7 @@ Se transformaron algunos datos  los cuales fueron:
 5. Se creó la columna con el retorno de inversión, llamada return,  dividiendo dos columnas ( revenue/ budget) .
 6. Se eliminaron las columnas que no se utilizaron: 
 
-# Eda
+# [Eda] (ETL-EDA-ML_Ops.ipynb)
 Se buscó la relación que había entre las variables de las bases de datos, se realizó... columnas eliminadas un análisis para las variables numéricas, y otro, para las variables categóricas:
 Variables numéricas 
 1. Se realizo un análisis de correlación a través de una matriz de correlación.
@@ -40,6 +44,8 @@ Variables numéricas
 
 Variables categóricas: 
 1. se realizó un proceso de para la recomendación del sistema usando cosine_similarity
+
+_`Nota: para más detalles, revisar el documento ETL-EDA-ML_Ops.ipynb`_
 
 # APIs y Deployment 
 Para este proceso se utilizaron las herramientas de fast api y Render. Primero, se realizaron las funciones que iba a ser utilizadas para hacer nuestras consultas, asi como nuestra función del modelo de recomendación, las cuales fueron las siguientes:
@@ -57,3 +63,9 @@ Def peliculas_idioma: Se ingresa un Idioma, devolviendo la cantidad de película
 
 * def recomendacion: Se ingresa el nombre de una película y te recomienda las similares en una lista de 5 valores.
 
+_`Nota: para más detalles, revisar el documento main.py`_
+
+
+# **Links**
+
+* Deploy:

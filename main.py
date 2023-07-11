@@ -110,4 +110,4 @@ def recommend(titulo):
     similar = sorted(list(enumerate(distances)), reverse=True, key=lambda x: x[1])
     similar_indice = [i for i, _ in similar[1:6]]
     similar_pelis = muestra['title'].iloc[similar_indice].values.tolist()
-    return similar_pelis
+    return {'peliculas_recomendadas': similar_pelis}
