@@ -19,7 +19,7 @@ def index():
 
 @app.get('/peliculas_idioma/{idioma}')
 def peliculas_idioma(idioma:str):
-    data = pd.read_csv('_scr/data/movies_etl_fa.csv')
+    data = pd.read_csv('_src/data/movies_etl_fa.csv')
     idioma = idioma.lower()
     data['original_language'] = data['original_language'].str.lower()
     cantidad_peliculas = sum(data['original_language'] == idioma)
@@ -28,7 +28,7 @@ def peliculas_idioma(idioma:str):
 
 @app.get('/peliculas_duracion/{Pelicula}')
 def pelicula_duracion(Pelicula:str):
-    data = pd.read_csv('_scr/data/movies_etl_fa.csv')
+    data = pd.read_csv('_src/data/movies_etl_fa.csv')
     pelicula = data[data['title'].str.lower() == Pelicula.lower()]
     informacion_peliculas = []
     for i, row in pelicula.iterrows():
@@ -42,7 +42,7 @@ def pelicula_duracion(Pelicula:str):
 
 @app.get('/peliculas_franquicia/{Franquicia}')
 def peliculas_franquicia(Franquicia:str):
-    data = pd.read_csv('_scr/data/movies_etl_fa.csv')
+    data = pd.read_csv('_src/data/movies_etl_fa.csv')
     data['belongs_to_collection'] = data['belongs_to_collection']
     franquicia = data[data['belongs_to_collection'].str.lower() == Franquicia.lower()]  # Filtrar las películas por nombre de franquicia
     cantidad_peliculas = franquicia['title'].count()  # Obtener la cantidad de películas
@@ -60,7 +60,7 @@ def peliculas_franquicia(Franquicia:str):
 
 @app.get('/peliculas_pais/{Pais}')
 def peliculas_pais(Pais: str):
-    data = pd.read_csv('_scr/data/movies_etl_fa.csv')  # Reemplaza con la ruta y nombre de tu archivo CSV
+    data = pd.read_csv('_src/data/movies_etl_fa.csv')  # Reemplaza con la ruta y nombre de tu archivo CSV
     pais = Pais.lower()  # Convertir el nombre del país a minúsculas
     data['production_countries'] = data['production_countries'].str.lower()  # Convertir la columna 'pais' a minúsculas
     cantidad_peliculas = data['production_countries'].apply(lambda x: pais in x).sum()
@@ -69,7 +69,7 @@ def peliculas_pais(Pais: str):
 
 @app.get('/productoras_exitosas/{Productora}')
 def productoras_exitosas(Productora:str):
-    data = pd.read_csv('_scr/data/movies_etl_fa.csv')
+    data = pd.read_csv('_src/data/movies_etl_fa.csv')
     productora = Productora.lower()
     data['production_companies'] = data['production_companies'].str.lower()  # Convertir las productoras de cada película a minúsculas
     peliculas_productora = data[data['production_companies'].apply(lambda x: productora in x)]  # Filtrar películas por productora
@@ -80,7 +80,7 @@ def productoras_exitosas(Productora:str):
 
 @app.get('/get_director/{Director}')
 def get_director(Director:str):
-    data = pd.read_csv('_scr/data/movies_etl_fa.csv')   # Reemplaza con la ruta y nombre de tu archivo CSV
+    data = pd.read_csv('_src/data/movies_etl_fa.csv')   # Reemplaza con la ruta y nombre de tu archivo CSV
     director = Director.lower()
     data['director'] = data['director'].str.lower().fillna('')  # Convertir los nombres de los directores a minúsculas
     peliculas_director = data[data['director'].apply(lambda x: director in x)]
